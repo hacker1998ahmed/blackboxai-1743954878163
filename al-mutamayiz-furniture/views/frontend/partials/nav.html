@@ -1,0 +1,70 @@
+<nav class="bg-gray-900 border-b border-cyan-500/20">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <a href="/" class="text-3xl font-bold neon-text text-cyan-400">المتميز</a>
+        
+        <!-- Mobile menu button -->
+        <button class="md:hidden text-white focus:outline-none" id="mobile-menu-button">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-6 space-x-reverse">
+            <a href="/products" class="hover:text-cyan-400 transition">المنتجات</a>
+            <a href="/about" class="hover:text-cyan-400 transition">من نحن</a>
+            <a href="/contact" class="hover:text-cyan-400 transition">اتصل بنا</a>
+            
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <a href="/wishlist" class="relative">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                </a>
+                <a href="/cart" class="relative">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span class="absolute -top-2 -right-2 bg-rose-500 text-xs w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                </a>
+                <% if(user) { %>
+                    <a href="/account" class="flex items-center space-x-2 space-x-reverse">
+                        <img src="<%= user.avatar %>" alt="Profile" class="w-8 h-8 rounded-full">
+                        <span><%= user.name %></span>
+                    </a>
+                <% } else { %>
+                    <a href="/login" class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-md hover:opacity-90 transition">تسجيل الدخول</a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden hidden bg-gray-800" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="/products" class="block px-3 py-2 hover:bg-gray-700">المنتجات</a>
+            <a href="/about" class="block px-3 py-2 hover:bg-gray-700">من نحن</a>
+            <a href="/contact" class="block px-3 py-2 hover:bg-gray-700">اتصل بنا</a>
+            <div class="pt-4 border-t border-gray-700">
+                <% if(user) { %>
+                    <a href="/account" class="flex items-center px-3 py-2 space-x-2 space-x-reverse">
+                        <img src="<%= user.avatar %>" alt="Profile" class="w-8 h-8 rounded-full">
+                        <span><%= user.name %></span>
+                    </a>
+                    <a href="/wishlist" class="block px-3 py-2 hover:bg-gray-700">المفضلة</a>
+                    <a href="/logout" class="block px-3 py-2 text-rose-400 hover:bg-gray-700">تسجيل الخروج</a>
+                <% } else { %>
+                    <a href="/login" class="block px-3 py-2 bg-cyan-600 rounded-md text-center">تسجيل الدخول</a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    });
+</script>
