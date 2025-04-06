@@ -1,0 +1,14 @@
+{
+  "name": "al-mutamayiz-furniture",
+  "version": "1.0.0",
+  "description": "E-commerce website for Al-Mutamayiz Furniture",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "sequelize": "^6.6.5",
+    "mysql2": "^2.3.3"
+  }
+}
