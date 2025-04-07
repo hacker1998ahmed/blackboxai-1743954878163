@@ -98,6 +98,122 @@ DB_PASS=your_database_password
 هيئ ملف .htaccess (إذا لزم الأمر):
 
 تشغيل RewriteEngine
+
+Here's how to configure email settings for your furniture store application in cPanel:
+
+SMTP Configuration in .env file:
+Add these settings to your .env file:
+
+EMAIL_HOST=mail.yourdomain.com
+EMAIL_PORT=465
+EMAIL_USER=your_email@yourdomain.com
+EMAIL_PASS=your_email_password
+EMAIL_FROM=no-reply@yourdomain.com
+EMAIL_SECURE=true
+cPanel Email Setup:
+
+Log in to cPanel
+Go to "Email Accounts"
+Create a new email account (e.g., no-reply@yourdomain.com)
+Note the credentials for your application
+Configure Email Routing:
+
+In cPanel, go to "Email Routing"
+Select "Remote Mail Exchanger" if using third-party email service
+Or keep as "Local Mail Exchanger" for cPanel email
+SPF/DKIM Records (Recommended):
+
+In cPanel, go to "Email Deliverability"
+Fix any issues reported
+Set up SPF and DKIM authentication
+Node.js Email Configuration:
+Update your email service configuration in config/email.js (create if doesn't exist):
+
+module.exports = {
+  host: process.env.EMAIL_HOST,
+  port: process.env.EMAIL_PORT,
+  secure: process.env.EMAIL_SECURE === 'true',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
+};
+Test Email Functionality:
+
+Send a test email from your application
+Check cPanel's "Email Deliverability" for issues
+Review "Email Disk Usage" to monitor your email account
+For transactional emails (order confirmations, etc.), consider using:
+
+cPanel's "Email Marketing" features
+Third-party services like Mailgun or SendGrid
+
+إليك كيفية ضبط إعدادات البريد الإلكتروني لتطبيق متجر الأثاث الخاص بك في لوحة تحكم cPanel:
+
+ضبط SMTP في ملف .env:
+أضف هذه الإعدادات إلى ملف .env:
+
+EMAIL_HOST=mail.yourdomain.com
+EMAIL_PORT=465
+EMAIL_USER=your_email@yourdomain.com
+EMAIL_PASS=your_email_password
+EMAIL_FROM=no-reply@yourdomain.com
+EMAIL_SECURE=true
+إعداد البريد الإلكتروني في لوحة تحكم cPanel:
+
+تسجيل الدخول إلى لوحة تحكم cPanel
+انتقل إلى "حسابات البريد الإلكتروني"
+أنشئ حساب بريد إلكتروني جديد (مثل: no-reply@yourdomain.com)
+دوّن بيانات اعتماد تطبيقك
+ضبط توجيه البريد الإلكتروني:
+
+في لوحة تحكم cPanel، انتقل إلى "توجيه البريد الإلكتروني"
+اختر "مُبادِل البريد عن بُعد" إذا كنت تستخدم خدمة بريد إلكتروني خارجية
+أو احتفظ به كـ "بريد محلي" "مُبادِل" لبريد cPanel الإلكتروني
+سجلات SPF/DKIM (مُوصى به):
+
+في cPanel، انتقل إلى "قابلية تسليم البريد الإلكتروني".
+
+أصلح أي مشاكل تم الإبلاغ عنها.
+
+إعداد مصادقة SPF وDKIM.
+
+تكوين بريد Node.js الإلكتروني:
+
+حدِّث تكوين خدمة البريد الإلكتروني في config/email.js (أنشئه إذا لم يكن موجودًا):
+
+module.exports = {
+host: process.env.EMAIL_HOST,
+port: process.env.EMAIL_PORT,
+secure: process.env.EMAIL_SECURE === 'true',
+auth: {
+user: process.env.EMAIL_USER,
+pass: process.env.EMAIL_PASS
+},
+tls: {
+rejectUnauthorized: false
+}
+};
+اختبار وظيفة البريد الإلكتروني:
+
+أرسل بريدًا إلكترونيًا تجريبيًا من تطبيقك
+
+تحقق من "إمكانية تسليم البريد الإلكتروني" في لوحة تحكم cPanel بحثًا عن أي مشاكل
+
+راجع "استخدام قرص البريد الإلكتروني" لمراقبة حساب بريدك الإلكتروني
+
+للرسائل الإلكترونية المتعلقة بالمعاملات (تأكيدات الطلبات، إلخ)، استخدم:
+
+ميزات "التسويق عبر البريد الإلكتروني" في لوحة تحكم cPanel
+
+خدمات خارجية مثل Mailgun أو SendGrid
+
+
+
+
 RewriteRule ^(.*)$ http://localhost:3000/$1 [P,L]
 شغّل التطبيق:
 
